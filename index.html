@@ -1,0 +1,120 @@
+<html>
+<head>
+
+<title>Your game idea is too big</title>
+
+<script type="text/javascript">
+  function estimate(form) {
+  
+    var budget = 10000;
+  
+    for (var i=0; i < form.elements.length; i++) {
+      if (form.elements[i].checked == true) {
+	    budget = budget * form.elements[i].value;
+	  }
+    }
+	
+	// format estimate
+	var formatted_budget = budget.toString();
+	formatted_budget = formatted_budget.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+	document.getElementById("estimate").innerHTML = "<p>Estimate: $" + formatted_budget + "</p>";
+	
+	var descr = "<p>It would take an entry-level game developer " + Math.round(budget / 5000)/10 + " years to create this game.</p>";
+	document.getElementById("description").innerHTML = descr;
+	
+  }
+</script>
+
+<style>
+ body {text-align: center; margin-top: 50px; font-family: helvetica, arial, sans-serif;}
+ h1 {font-size: 32pt; text-align: center; text-shadow: 0px 1px 0px rgba(255,255,255,.5);}
+ #content {width: 600px; text-align: left; margin: 0 auto; border-radius: 10px; background-color: #dddddd; padding: 20px;}
+ form {margin-left: 200px;}
+ #estimate {text-align: center; font-size: 32pt; color: #ff0000; text-shadow: 0px 1px 0px rgba(255,255,255,.5);}
+ #description {text-align: center; color: #666666;}
+ #footer {color: #999999; font-size: 8pt;}
+ #footer a {color: #6666ff;}
+ #left_ads {float: left;}
+ #right_ads {float: right;}
+ #advice {font-size: 9pt; text-align: center;}
+</style> 
+
+</head>
+<body>
+
+<div id="left_ads">
+<iframe src="http://rcm.amazon.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=pfu-20&o=1&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=0735619670" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<br />
+<iframe src="http://rcm.amazon.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=pfu-20&o=1&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=020161622X" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+</div>
+
+<div id="right_ads">
+<iframe src="http://rcm.amazon.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=pfu-20&o=1&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=1435457420" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<br />
+<iframe src="http://rcm.amazon.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=pfu-20&o=1&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=1568814135" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+</div>
+
+<div id="content">
+
+<h1>Your game idea is too big</h1>
+
+<form action="">
+
+  <input type="checkbox" name="feature" id="single" value="1.0" checked="checked" disabled="disabled"/>
+  <label for="single">Single Mechanic</label>
+  <br /> 
+  <input type="checkbox" name="feature" id="threedee" value="2.0" onclick="estimate(this.form);" />
+  <label for="threedee">3D Visuals</label>
+  <br />
+  <input type="checkbox" name="feature" id="platform" value="1.25" onclick="estimate(this.form);" />
+  <label for="platform">Cross Platform</label>
+  <br />
+  <input type="checkbox" name="feature" id="engine" value="3.0" onclick="estimate(this.form);" />
+  <label for="engine">Custom Engine</label>
+  <br />
+  <input type="checkbox" name="feature" id="franchise" value="2.0" onclick="estimate(this.form);" />
+  <label for="franchise">Existing Franchise</label>
+  <br />
+  <input type="checkbox" name="feature" id="modding" value="2.0" onclick="estimate(this.form);" />
+  <label for="modding">Modding Tools</label>
+  <br />
+  <input type="checkbox" name="feature" id="multiplayer" value="4.0" onclick="estimate(this.form);" />
+  <label for="multiplayer">Multiplayer</label>
+  <br />
+  <input type="checkbox" name="feature" id="mmo" value="10.5" onclick="estimate(this.form);" />
+  <label for="mmo">MMO / Persistent Online World</label>
+  <br />
+  <input type="checkbox" name="feature" id="openworld" value="3.0" onclick="estimate(this.form);" />
+  <label for="openworld">Open World</label>
+  <br />
+  <input type="checkbox" name="feature" id="realtime" value="2.0" onclick="estimate(this.form);" />
+  <label for="realtime">Realtime</label>
+  <br />
+  <input type="checkbox" name="feature" id="translations" value="1.5" onclick="estimate(this.form);" />
+  <label for="translations">Translations</label>
+  <br />
+  <input type="checkbox" name="feature" id="voice" value="1.5" onclick="estimate(this.form);" />
+  <label for="voice">Voice Acting</label>
+  <br />
+
+</form>
+
+<div id="estimate">
+  <p>Estimate: $10,000</p>
+</div>
+<div id="description">
+  <p>It would take an entry-level game developer 0.2 years to create this game.</p>
+</div>
+
+<p id="advice">
+  <a href="advice.html">But...!</a>
+</p>
+
+</div>
+
+<div id="footer">
+  <p>figures completely made up by <a href="http://clintbellanger.net/rpg/">Clint Bellanger</a>, who should be working on his game (which is too big)</p>
+</div>
+
+</body>
+</html>
