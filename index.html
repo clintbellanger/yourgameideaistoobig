@@ -4,32 +4,63 @@
 <title>Your game idea is too big</title>
 
 <script type="text/javascript">
-  function estimate(form) {
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30648780-1']);
+  _gaq.push(['_setDomainName', 'yourgameideaistoobig.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript">
+function estimate(form) {
   
-    var budget = 10000;
+  var budget = 1000;
   
-    for (var i=0; i < form.elements.length; i++) {
-      if (form.elements[i].checked == true) {
+  for (var i=0; i < form.elements.length; i++) {
+    if (form.elements[i].checked == true) {
 	    budget = budget * form.elements[i].value;
-	  }
     }
+  }
+
+  budget = Math.round(budget);
 	
 	// format estimate
 	var formatted_budget = budget.toString();
 	formatted_budget = formatted_budget.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 	document.getElementById("estimate").innerHTML = "<p>Estimate: $" + formatted_budget + "</p>";
-	
-	var descr = "<p>It would take an entry-level game developer " + Math.round(budget / 5000)/10 + " years to create this game.</p>";
+	  
+  var solo_time;
+  var solo_units;
+
+  if (budget >= 50000) {
+     solo_time = Math.round(budget / 50000).toFixed(1);
+     solo_units = "years";
+  }
+  else if (budget >= 4000) {
+     solo_time = Math.round(budget / 4200).toFixed(1);
+     solo_units = "months";
+  }
+  else {
+    solo_time = Math.round(budget / 1000).toFixed(1);
+    solo_units = "weeks";
+  }
+
+	var descr = "<p>You could hire a team to make it for that price. Or you could make it yourself in about " + solo_time + " " + solo_units + "</p>";
 	document.getElementById("description").innerHTML = descr;
 	
-  }
+}
 </script>
 
 <style>
  body {text-align: center; margin-top: 50px; font-family: helvetica, arial, sans-serif;}
  h1 {font-size: 32pt; text-align: center; text-shadow: 0px 1px 0px rgba(255,255,255,.5);}
  #content {width: 600px; text-align: left; margin: 0 auto; border-radius: 10px; background-color: #dddddd; padding: 20px;}
- form {margin-left: 200px;}
+ form {margin-left: 100px;}
  #estimate {text-align: center; font-size: 32pt; color: #ff0000; text-shadow: 0px 1px 0px rgba(255,255,255,.5);}
  #description {text-align: center; color: #666666;}
  #footer {color: #999999; font-size: 8pt;}
@@ -58,52 +89,99 @@
 
 <h1>Your game idea is too big</h1>
 
+<p>
+Tell me about your game!
+</p>
+
 <form action="">
 
-  <input type="checkbox" name="feature" id="single" value="1.0" checked="checked" disabled="disabled"/>
-  <label for="single">Single Mechanic</label>
+  <input type="checkbox" name="feature" id="start" value="1.0" checked="checked" disabled="disabled"/>
+  <label for="start">Ok, so it's this game with ...</label>
   <br /> 
-  <input type="checkbox" name="feature" id="threedee" value="2.0" onclick="estimate(this.form);" />
-  <label for="threedee">3D Visuals</label>
+  
+  <input type="checkbox" name="feature" id="threedee" value="4.2" onclick="estimate(this.form);" />
+  <label for="threedee">State of the art Visuals!</label>
   <br />
-  <input type="checkbox" name="feature" id="platform" value="1.25" onclick="estimate(this.form);" />
-  <label for="platform">Cross Platform</label>
-  <br />
-  <input type="checkbox" name="feature" id="engine" value="3.0" onclick="estimate(this.form);" />
-  <label for="engine">Custom Engine</label>
-  <br />
-  <input type="checkbox" name="feature" id="franchise" value="2.0" onclick="estimate(this.form);" />
-  <label for="franchise">Existing Franchise</label>
-  <br />
-  <input type="checkbox" name="feature" id="modding" value="2.0" onclick="estimate(this.form);" />
-  <label for="modding">Modding Tools</label>
-  <br />
-  <input type="checkbox" name="feature" id="multiplayer" value="4.0" onclick="estimate(this.form);" />
-  <label for="multiplayer">Multiplayer</label>
-  <br />
-  <input type="checkbox" name="feature" id="mmo" value="10.5" onclick="estimate(this.form);" />
-  <label for="mmo">MMO / Persistent Online World</label>
-  <br />
-  <input type="checkbox" name="feature" id="openworld" value="3.0" onclick="estimate(this.form);" />
-  <label for="openworld">Open World</label>
-  <br />
-  <input type="checkbox" name="feature" id="realtime" value="2.0" onclick="estimate(this.form);" />
-  <label for="realtime">Realtime</label>
-  <br />
-  <input type="checkbox" name="feature" id="translations" value="1.5" onclick="estimate(this.form);" />
-  <label for="translations">Translations</label>
-  <br />
-  <input type="checkbox" name="feature" id="voice" value="1.5" onclick="estimate(this.form);" />
-  <label for="voice">Voice Acting</label>
+  
+  <input type="checkbox" name="feature" id="openworld" value="7.6" onclick="estimate(this.form);" />
+  <label for="openworld">Vast, Open World to explore!</label>
   <br />
 
+  <input type="checkbox" name="feature" id="mmo" value="12.0" onclick="estimate(this.form);" />
+  <label for="mmo">Massively Multiplayer Online (MMO)!</label>
+  <br />
+  
+  <input type="checkbox" name="feature" id="fps" value="3.5" onclick="estimate(this.form);" />
+  <label for="fps">First Person Shooter (FPS) mechanics!</label>
+  <br />
+  
+  <input type="checkbox" name="feature" id="rts" value="3.2" onclick="estimate(this.form);" />
+  <label for="rts">Real-Time Strategy (RTS) mechanics!</label>
+  <br />
+
+  <input type="checkbox" name="feature" id="fighting" value="2.8" onclick="estimate(this.form);" />
+  <label for="fighting">Melee Combat or Fighting Game mechanics!</label>
+  <br />
+  
+  <input type="checkbox" name="feature" id="driving" value="2.4" onclick="estimate(this.form);" />
+  <label for="driving">Vehicles and Driving!</label>
+  <br />
+
+  <input type="checkbox" name="feature" id="rpg" value="1.8" onclick="estimate(this.form);" />
+  <label for="rpg">RPG Elements! Lots of stats and upgrades!</label>
+  <br />
+
+  <input type="checkbox" name="feature" id="puzzle" value="1.2" onclick="estimate(this.form);" />
+  <label for="puzzle">Puzzle or Platforming Elements!</label>
+  <br />
+
+  <input type="checkbox" name="feature" id="creation" value="2.0" onclick="estimate(this.form);" />
+  <label for="creation">Fully customizable Character Creation!</label>
+  <br />
+  
+  <input type="checkbox" name="feature" id="classes" value="3.0" onclick="estimate(this.form);" />
+  <label for="classes">Many distinct Classes or Characters to choose!</label>
+  <br />  
+
+  <input type="checkbox" name="feature" id="crafting" value="1.2" onclick="estimate(this.form);" />
+  <label for="crafting">Deep Crafting System!</label>
+  <br />  
+
+  <input type="checkbox" name="feature" id="pve_pvp" value="2.4" onclick="estimate(this.form);" />
+  <label for="pve_pvp">Both PVE and PVP Gameplay!</label>
+  <br />    
+
+  <input type="checkbox" name="feature" id="story" value="4.5" onclick="estimate(this.form);" />
+  <label for="story">Hours and hours of Campaign Story Mode!</label>
+  <br /> 
+
+  <input type="checkbox" name="feature" id="procedural" value="2.6" onclick="estimate(this.form);" />
+  <label for="procedural">Procedural generation for endless replayability!</label>
+  <br />    
+
+  <input type="checkbox" name="feature" id="dialog" value="1.5" onclick="estimate(this.form);" />
+  <label for="dialog">Branching Dialog Trees with novels of text!</label>
+  <br />    
+
+  <input type="checkbox" name="feature" id="vox" value="1.2" onclick="estimate(this.form);" />
+  <label for="vox">Quality Voice Acting for every line!</label>
+  <br />    
+
+  <input type="checkbox" name="feature" id="mods" value="1.5" onclick="estimate(this.form);" />
+  <label for="mods">Modding Tools for the community!</label>
+  <br />    
+
+  <input type="checkbox" name="feature" id="platforms" value="1.5" onclick="estimate(this.form);" />
+  <label for="platforms">Available on all Major Platforms!</label>
+  <br />    
+  
 </form>
 
 <div id="estimate">
-  <p>Estimate: $10,000</p>
+  <p>Estimate: $1,000</p>
 </div>
 <div id="description">
-  <p>It would take an entry-level game developer 0.2 years to create this game.</p>
+  <p>You could hire a team to make it for that price. Or you could make it yourself in about 1 week.</p>
 </div>
 
 <p id="advice">
